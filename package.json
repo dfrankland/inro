@@ -1,0 +1,79 @@
+{
+  "name": "@dfrankland/inro",
+  "version": "0.0.0",
+  "description": "Up-to-date, minimal, flexbox pattern made with styled-components.",
+  "keywords": [
+    "flex",
+    "box",
+    "flexbox",
+    "grid"
+  ],
+  "main": "./dist/index.js",
+  "files": [
+    "dist/index.js",
+    "dist/index.js.map"
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "author": {
+    "name": "Dylan Frankland",
+    "email": "dylan@frankland.io",
+    "url": "https://github.com/dfrankland"
+  },
+  "contributors": [],
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js",
+    "lint": "eslint src",
+    "prepublish": "npm run lint && npm run build"
+  },
+  "bugs": {
+    "url": "https://github.com/dfrankland/inro/issues"
+  },
+  "homepage": "https://github.com/dfrankland/inro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfrankland/inro.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-styled-components": "^1.1.4",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.0.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  },
+  "dependencies": {
+    "polished": "^1.1.2",
+    "prop-types": "^15.5.10"
+  },
+  "peerDependencies": {
+    "styled-components": "^2.0.0"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "rollup.config.js"
+          ]
+        }
+      ]
+    }
+  }
+}
