@@ -1,6 +1,7 @@
 import { rem } from 'polished';
 
 export const breakpointWidths = {
+  xs: rem('0px'),
   sm: rem('576px'),
   md: rem('768px'),
   lg: rem('992px'),
