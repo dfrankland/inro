@@ -1,5 +1,5 @@
 {
-  "name": "@dfrankland/inro",
+  "name": "inro",
   "version": "0.0.0",
   "description": "Up-to-date, minimal, flexbox pattern made with styled-components.",
   "keywords": [
