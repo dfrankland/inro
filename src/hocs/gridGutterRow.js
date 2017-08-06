@@ -1,11 +1,13 @@
 import styled from 'styled-components';
-import { gutterHalfWidth } from '../constants';
+import { gutterHalfWidth as defaultGutterHalfWidth } from '../constants';
 
-export default (component) => {
-  const GridGutterRowHOC = styled(component)`
+export default ({
+  gutterHalfWidth = defaultGutterHalfWidth,
+} = {}) => (component) => {
+  const GridGutterRow = styled(component)`
     margin-left: -${gutterHalfWidth};
     margin-right: -${gutterHalfWidth};
   `;
 
-  return GridGutterRowHOC;
+  return GridGutterRow;
 };

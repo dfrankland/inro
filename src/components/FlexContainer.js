@@ -1,13 +1,13 @@
-import styled from 'styled-components';
-import display from '../hocs/display';
+import React from 'react';
+import styledBreakpoint from '../hocs/styledBreakpoint';
 import gridGutterRow from '../hocs/gridGutterRow';
 import flexContainer from '../hocs/flexContainer';
 
 export default (
-  display(
+  styledBreakpoint(
     gridGutterRow(
       flexContainer(
-        styled.div``,
+        props => <div {...props} />,
       ),
     ),
   )

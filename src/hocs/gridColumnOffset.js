@@ -1,56 +1,48 @@
-import styled from 'styled-components';
+import React from 'react';
 import CustomPropTypes from '../lib/CustomPropTypes';
-import { breakpointWidths, columns } from '../constants';
-import breakpointCssReducer from '../lib/breakpointCssReducer';
+import { columns as defaultColumns } from '../constants';
+import styledBreakpoint from './styledBreakpoint';
 
-const offsetKey = 'Offset';
-const offsetKeyRegExp = new RegExp(`${offsetKey}$`);
+export default ({
+  columns = defaultColumns,
+  suffix = '-column-offset',
+  defaultProps = {},
+}) => (component) => {
+  const {
+    component: Component,
+    propNames,
+  } = styledBreakpoint(component, { suffix });
 
-export default (component) => {
-  const GridColumnOffsetHOC = styled(component)`
-    ${props => (
-      breakpointCssReducer({
-        breakpoints: (
-          Object.keys(props).reduce(
-            (allBreakpoints, breakpointOffset) => {
-              const breakpoint = breakpointOffset.replace(offsetKeyRegExp, '');
-              const value = props[breakpointOffset];
-              if (
-                !offsetKeyRegExp.test(breakpointOffset) ||
-                !breakpointWidths[breakpoint] ||
-                !value
-              ) return allBreakpoints;
-              return allBreakpoints.concat({ breakpoint, value });
-            },
-            [],
-          )
-        ),
-        css: size => `
-          margin-left: ${(size / columns) * 100}%;
-        `,
-      })
-    )}
-  `;
+  const GridColumnOffset = (props) => {
+    const newProps = propNames.reduce(
+      (allNewProps, propName) => {
+        const value = allNewProps[propName];
+        if (!value) return allNewProps;
 
-  GridColumnOffsetHOC.defaultProps = (
-    Object.keys(breakpointWidths).reduce(
-      (allBreakpoints, breakpoint) => ({
-        ...allBreakpoints,
-        [`${breakpoint}${offsetKey}`]: null,
+        return {
+          ...allNewProps,
+          [propName]: `
+            margin-left: ${(value / columns) * 100}%;
+          `,
+        };
+      },
+      props,
+    );
+
+    return <Component {...newProps} />;
+  };
+
+  GridColumnOffset.defaultProps = defaultProps;
+
+  GridColumnOffset.propTypes = (
+    propNames.reduce(
+      (allPropTypes, propName) => ({
+        ...allPropTypes,
+        [propName]: CustomPropTypes.integerRange(1, columns),
       }),
       {},
     )
   );
 
-  GridColumnOffsetHOC.propTypes = (
-    Object.keys(breakpointWidths).reduce(
-      (allBreakpoints, breakpoint) => ({
-        ...allBreakpoints,
-        [`${breakpoint}${offsetKey}`]: CustomPropTypes.integerRange(1, columns),
-      }),
-      {},
-    )
-  );
-
-  return GridColumnOffsetHOC;
+  return GridColumnOffset;
 };

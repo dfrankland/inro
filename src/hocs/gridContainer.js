@@ -1,46 +1,65 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
 import CustomPropTypes from '../lib/CustomPropTypes';
-import { breakpointWidths, gridContainerMaxWidths, gutterHalfWidth } from '../constants';
-import breakpointCssReducer from '../lib/breakpointCssReducer';
+import {
+  gridContainerMaxWidths,
+  gutterHalfWidth as defaultGutterHalfWidth,
+} from '../constants';
+import styledBreakpoint from './styledBreakpoint';
 
-export default (component) => {
-  const GridContainerHOC = styled(component)`
+export default ({
+  suffix = '-container',
+  breakpointWidths = gridContainerMaxWidths,
+  gutterHalfWidth = defaultGutterHalfWidth,
+  defaultProps,
+}) => (component) => {
+  const {
+    component: newComponent,
+    propNameMap,
+    propNames,
+  } = styledBreakpoint(component, { suffix, breakpointWidths });
+
+  const Component = styled(newComponent)`
     box-sizing: border-box;
     margin-right: auto;
     margin-left: auto;
     padding-right: ${gutterHalfWidth};
     padding-left: ${gutterHalfWidth};
-    ${props => (
-      breakpointCssReducer({
-        breakpoints: props.containerWidths,
-        css: width => `
-          width: ${width};
-          max-width: 100%;
-        `,
-      })
-    )}
+    max-width: 100%;
   `;
 
-  GridContainerHOC.defaultProps = {
-    containerWidths: Object.keys(gridContainerMaxWidths).map(
-      breakpoint => ({
-        breakpoint,
-        value: gridContainerMaxWidths[breakpoint],
-      }),
-    ),
+  const GridContainer = (props) => {
+    const newProps = propNames.reduce(
+      (allNewProps, propName) => {
+        const value = allNewProps[propName];
+        if (!value) return allNewProps;
+
+        return {
+          ...allNewProps,
+          [propName]: width => `
+            width: ${width};
+          `,
+        };
+      },
+      props,
+    );
+
+    return <Component {...newProps} />;
   };
 
-  GridContainerHOC.propTypes = {
-    containerWidths: PropTypes.arrayOf(
-      PropTypes.shape({
-        breakpoint: PropTypes.oneOf(
-          Object.keys(breakpointWidths),
-        ).isRequired,
-        value: CustomPropTypes.cssWidth.isRequired,
-      }),
-    ),
-  };
+  GridContainer.defaultProps = defaultProps || propNames.map(
+    propName => gridContainerMaxWidths[propNameMap[propName]],
+  );
 
-  return GridContainerHOC;
+  GridContainer.propTypes = (
+    propNames.reduce(
+      (allPropTypes, propName) => ({
+        ...allPropTypes,
+        [propName]: CustomPropTypes.cssWidth.isRequired,
+      }),
+      {},
+    )
+  );
+
+  return GridContainer;
 };

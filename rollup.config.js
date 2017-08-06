@@ -26,10 +26,12 @@ export default {
           },
         ],
         'stage-0',
+        'react',
       ],
       plugins: [
         'external-helpers',
         'styled-components',
+        'polished',
       ],
     }),
   ],

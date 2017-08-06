@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import display from '../hocs/display';
+import React from 'react';
+import styledBreakpoint from '../hocs/styledBreakpoint';
 import gridContainer from '../hocs/gridContainer';
 
 export default (
-  display(
+  styledBreakpoint(
     gridContainer(
-      styled.div``,
+      props => <div {...props} />,
     ),
   )
 );

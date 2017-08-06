@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CustomPropTypes from '../lib/CustomPropTypes';
 
 export default (component) => {
-  const FlexItemHOC = styled(component)`
+  const FlexItem = styled(component)`
     ${props => `align-self: ${props.alignSelf};`}
     ${props => `flex-basis: ${props.flexBasis};`}
     ${props => `flex-grow: ${props.flexGrow};`}
@@ -11,7 +11,7 @@ export default (component) => {
     ${props => `order: ${props.order};`}
   `;
 
-  FlexItemHOC.defaultProps = {
+  FlexItem.defaultProps = {
     alignSelf: 'auto',
     flexBasis: 'auto',
     flexGrow: 1,
@@ -19,7 +19,7 @@ export default (component) => {
     order: 0,
   };
 
-  FlexItemHOC.propTypes = {
+  FlexItem.propTypes = {
     alignSelf: PropTypes.oneOf([
       'auto',
       'flex-start',
@@ -40,5 +40,5 @@ export default (component) => {
     order: CustomPropTypes.integer,
   };
 
-  return FlexItemHOC;
+  return FlexItem;
 };
