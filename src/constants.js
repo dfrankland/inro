@@ -6,10 +6,8 @@ export const WIDTH_MD = 'md';
 export const WIDTH_LG = 'lg';
 export const WIDTH_XL = 'xl';
 
-// Taken from:
-// https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss#L171-L184
-//
-// Commit: 0501b029f53411e3168e8f2434cc519ea0fab4d6
+// Taken from the :
+// https://github.com/twbs/bootstrap/blob/0501b029f53411e3168e8f2434cc519ea0fab4d6/scss/_variables.scss#L171-L184
 export const breakpointMinWidths = {
   [WIDTH_XS]: rem('0px'),
   [WIDTH_SM]: rem('576px'),
@@ -19,9 +17,7 @@ export const breakpointMinWidths = {
 };
 
 // Taken from:
-// https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss#L187-L197
-//
-// Commit: 0501b029f53411e3168e8f2434cc519ea0fab4d6
+// https://github.com/twbs/bootstrap/blob/0501b029f53411e3168e8f2434cc519ea0fab4d6/scss/_variables.scss#L187-L197
 export const gridContainerMaxWidths = {
   [WIDTH_XS]: 'auto',
   [WIDTH_SM]: rem('540px'),
@@ -31,8 +27,6 @@ export const gridContainerMaxWidths = {
 };
 
 // Taken from:
-// https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss#L200-L205
-//
-// Commit: 0501b029f53411e3168e8f2434cc519ea0fab4d6
+// https://github.com/twbs/bootstrap/blob/0501b029f53411e3168e8f2434cc519ea0fab4d6/scss/_variables.scss#L200-L205
 export const columns = 12;
 export const gutterHalfWidth = rem('15px');
