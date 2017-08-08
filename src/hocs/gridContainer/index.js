@@ -1,23 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import CustomPropTypes from '../lib/CustomPropTypes';
+import CustomPropTypes from '../../lib/CustomPropTypes';
 import {
-  gridContainerMaxWidths,
+  gridContainerMaxWidths as defaultGridContainerMaxWidths,
   gutterHalfWidth as defaultGutterHalfWidth,
-} from '../constants';
-import styledBreakpoint from './styledBreakpoint';
+} from '../../constants';
+import styledBreakpoint from '../styledBreakpoint';
 
 export default ({
   suffix = '-container',
-  breakpointWidths = gridContainerMaxWidths,
+  gridContainerMaxWidths = defaultGridContainerMaxWidths,
   gutterHalfWidth = defaultGutterHalfWidth,
   defaultProps,
-}) => (component) => {
+} = {}) => (component) => {
   const {
     component: newComponent,
     propNameMap,
     propNames,
-  } = styledBreakpoint(component, { suffix, breakpointWidths });
+  } = styledBreakpoint({ suffix })(component);
 
   const Component = styled(newComponent)`
     box-sizing: border-box;
@@ -36,9 +37,7 @@ export default ({
 
         return {
           ...allNewProps,
-          [propName]: width => `
-            width: ${width};
-          `,
+          [propName]: `width: ${gridContainerMaxWidths[propNameMap[propName]]};`,
         };
       },
       props,
@@ -47,15 +46,22 @@ export default ({
     return <Component {...newProps} />;
   };
 
-  GridContainer.defaultProps = defaultProps || propNames.map(
-    propName => gridContainerMaxWidths[propNameMap[propName]],
+  GridContainer.defaultProps = defaultProps || propNames.reduce(
+    (allDefaultProps, propName) => ({
+      ...allDefaultProps,
+      [propName]: gridContainerMaxWidths[propNameMap[propName]],
+    }),
+    {},
   );
 
   GridContainer.propTypes = (
     propNames.reduce(
       (allPropTypes, propName) => ({
         ...allPropTypes,
-        [propName]: CustomPropTypes.cssWidth.isRequired,
+        [propName]: PropTypes.oneOfType([
+          PropTypes.oneOf(['auto']),
+          CustomPropTypes.cssWidth,
+        ]),
       }),
       {},
     )

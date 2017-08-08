@@ -15,7 +15,7 @@ export const breakpointMinWidths = {
   [WIDTH_SM]: rem('576px'),
   [WIDTH_MD]: rem('768px'),
   [WIDTH_LG]: rem('992px'),
-  [WIDTH_LG]: rem('1200px'),
+  [WIDTH_XL]: rem('1200px'),
 };
 
 // Taken from:
@@ -23,6 +23,7 @@ export const breakpointMinWidths = {
 //
 // Commit: 0501b029f53411e3168e8f2434cc519ea0fab4d6
 export const gridContainerMaxWidths = {
+  [WIDTH_XS]: 'auto',
   [WIDTH_SM]: rem('540px'),
   [WIDTH_MD]: rem('720px'),
   [WIDTH_LG]: rem('960px'),

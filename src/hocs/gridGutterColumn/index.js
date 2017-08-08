@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gutterHalfWidth as defaultGutterHalfWidth } from '../constants';
+import { gutterHalfWidth as defaultGutterHalfWidth } from '../../constants';
 
 export default ({
   gutterHalfWidth = defaultGutterHalfWidth,

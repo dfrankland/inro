@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CustomPropTypes from '../lib/CustomPropTypes';
-import { columns as defaultColumns } from '../constants';
-import styledBreakpoint from './styledBreakpoint';
+import CustomPropTypes from '../../lib/CustomPropTypes';
+import { columns as defaultColumns } from '../../constants';
+import styledBreakpoint from '../styledBreakpoint';
 
 export default ({
   columns = defaultColumns,
   suffix = '-columns',
   defaultProps = {},
-}) => (component) => {
+  flex = true,
+} = {}) => (component) => {
   const {
     component: Component,
     propNames,
-  } = styledBreakpoint(component, { suffix });
+  } = styledBreakpoint({ suffix })(component);
 
   const GridColumn = (props) => {
     const newProps = propNames.reduce(
@@ -22,14 +23,14 @@ export default ({
 
         if (value === 'auto') {
           value = `
-            flex: 0 0 auto;
+            ${flex ? 'flex: 0 0 auto;' : 'float: left;'}
             width: auto;
             max-width: 100%;
           `;
         } else {
           const percentage = (value / columns) * 100;
           value = `
-            flex: 0 0 ${percentage || 'auto'}%;
+            ${flex ? `flex: 0 0 ${percentage || 'auto'}%;` : 'float: left;'}
             width: ${percentage}%;
             max-width: ${percentage}%;
           `;

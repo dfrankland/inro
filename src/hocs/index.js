@@ -5,4 +5,5 @@ export gridColumnOffset from './gridColumnOffset';
 export gridContainer from './gridContainer';
 export gridGutterColumn from './gridGutterColumn';
 export gridGutterRow from './gridGutterRow';
+export gridRow from './gridRow';
 export styledBreakpoint from './styledBreakpoint';

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { breakpointMinWidths as defaultBreakpointWidths } from '../constants';
+import { breakpointMinWidths as defaultBreakpointWidths } from '../../constants';
 
 export const getTemplate = config => (props) => {
   const { propNames, propNameMap, breakpointWidths, cssTemplate } = config;
@@ -20,7 +20,10 @@ export const getTemplate = config => (props) => {
 
       if (typeof value !== 'string') return css;
 
-      return `${css} ${cssTemplate({ breakpointWidth, value })}`;
+      const newCss = cssTemplate({ breakpointWidth, value });
+      if (typeof newCss !== 'string') return css;
+
+      return `${css} ${newCss}`;
     },
     '',
   );
@@ -41,7 +44,7 @@ export const getConfig = ({ prefix, suffix, breakpointWidths }) => (
         ],
         propTypes: {
           ...propTypes,
-          [newPropName]: PropTypes.oneOfType(PropTypes.string, PropTypes.func),
+          [newPropName]: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
         },
       };
     },
@@ -61,7 +64,7 @@ export default ({
     `@media (min-width: ${breakpointWidth}) { ${value} }`
   ),
   defaultProps = {},
-} = {}) => {
+} = {}) => (component) => {
   const {
     propNameMap,
     propNames,
@@ -80,16 +83,15 @@ export default ({
     cssTemplate,
   });
 
+  const StyledBreakpoint = styled(component)`${template}`;
+  StyledBreakpoint.propTypes = propTypes;
+  StyledBreakpoint.defaultProps = defaultProps;
+
   return {
     propNameMap,
     propNames,
     propTypes,
     template,
-    component: (component) => {
-      const StyledBreakpoint = styled(component)`${template}`;
-      StyledBreakpoint.propTypes = propTypes;
-      StyledBreakpoint.defaultProps = defaultProps;
-      return StyledBreakpoint;
-    },
+    component: StyledBreakpoint,
   };
 };

@@ -1,7 +1,18 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default (component) => {
+export const defaultDefaultProps = {
+  inline: false,
+  alignContent: 'stretch',
+  alignItems: 'stretch',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'flex-start',
+};
+
+export default ({
+  defaultProps = defaultDefaultProps,
+} = {}) => (component) => {
   const FlexContainer = styled(component)`
     display: ${props => (props.inline ? 'inline-flex' : 'flex')};
     ${props => `align-content: ${props.alignContent};`}
@@ -11,14 +22,7 @@ export default (component) => {
     ${props => `justify-content: ${props.justifyContent};`}
   `;
 
-  FlexContainer.defaultProps = {
-    inline: false,
-    alignContent: 'stretch',
-    alignItems: 'stretch',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-  };
+  FlexContainer.defaultProps = defaultProps;
 
   FlexContainer.propTypes = {
     inline: PropTypes.bool,
