@@ -1,20 +1,32 @@
 import { rem } from 'polished';
 
-export const breakpointWidths = {
-  xs: rem('0px'),
-  sm: rem('576px'),
-  md: rem('768px'),
-  lg: rem('992px'),
-  xl: rem('1200px'),
+export const WIDTH_XS = 'xs';
+export const WIDTH_SM = 'sm';
+export const WIDTH_MD = 'md';
+export const WIDTH_LG = 'lg';
+export const WIDTH_XL = 'xl';
+
+// Taken from the :
+// https://github.com/twbs/bootstrap/blob/0501b029f53411e3168e8f2434cc519ea0fab4d6/scss/_variables.scss#L171-L184
+export const breakpointMinWidths = {
+  [WIDTH_XS]: rem('0px'),
+  [WIDTH_SM]: rem('576px'),
+  [WIDTH_MD]: rem('768px'),
+  [WIDTH_LG]: rem('992px'),
+  [WIDTH_XL]: rem('1200px'),
 };
 
+// Taken from:
+// https://github.com/twbs/bootstrap/blob/0501b029f53411e3168e8f2434cc519ea0fab4d6/scss/_variables.scss#L187-L197
 export const gridContainerMaxWidths = {
-  sm: rem('540px'),
-  md: rem('720px'),
-  lg: rem('960px'),
-  xl: rem('1140px'),
+  [WIDTH_XS]: 'auto',
+  [WIDTH_SM]: rem('540px'),
+  [WIDTH_MD]: rem('720px'),
+  [WIDTH_LG]: rem('960px'),
+  [WIDTH_XL]: rem('1140px'),
 };
 
-export const gutterHalfWidth = rem('15px');
-
+// Taken from:
+// https://github.com/twbs/bootstrap/blob/0501b029f53411e3168e8f2434cc519ea0fab4d6/scss/_variables.scss#L200-L205
 export const columns = 12;
+export const gutterHalfWidth = rem('15px');

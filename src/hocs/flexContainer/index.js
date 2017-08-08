@@ -1,8 +1,19 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default (component) => {
-  const FlexContainerHOC = styled(component)`
+export const defaultDefaultProps = {
+  inline: false,
+  alignContent: 'stretch',
+  alignItems: 'stretch',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'flex-start',
+};
+
+export default ({
+  defaultProps = defaultDefaultProps,
+} = {}) => (component) => {
+  const FlexContainer = styled(component)`
     display: ${props => (props.inline ? 'inline-flex' : 'flex')};
     ${props => `align-content: ${props.alignContent};`}
     ${props => `align-items: ${props.alignItems};`}
@@ -11,16 +22,9 @@ export default (component) => {
     ${props => `justify-content: ${props.justifyContent};`}
   `;
 
-  FlexContainerHOC.defaultProps = {
-    inline: false,
-    alignContent: 'stretch',
-    alignItems: 'stretch',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-  };
+  FlexContainer.defaultProps = defaultProps;
 
-  FlexContainerHOC.propTypes = {
+  FlexContainer.propTypes = {
     inline: PropTypes.bool,
     alignContent: PropTypes.oneOf([
       'flex-start',
@@ -59,5 +63,5 @@ export default (component) => {
     ]),
   };
 
-  return FlexContainerHOC;
+  return FlexContainer;
 };
