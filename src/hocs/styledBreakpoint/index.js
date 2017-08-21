@@ -8,7 +8,6 @@ export const getTemplate = config => (props) => {
   return propNames.reduce(
     (css, propName) => {
       const breakpoint = propNameMap[propName];
-      if (!breakpoint) return css;
 
       const breakpointWidth = breakpointWidths[breakpoint];
 
