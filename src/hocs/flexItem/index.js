@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CustomPropTypes from '../../lib/CustomPropTypes';
@@ -12,8 +13,12 @@ export const defaultDefaultProps = {
 
 export default ({
   defaultProps = defaultDefaultProps,
-} = {}) => (component) => {
-  const FlexItem = styled(component)`
+} = {}) => (Component) => {
+  const FlexItem = styled(
+    props => (
+      <Component {...props} order={null} />
+    ),
+  )`
     ${props => `align-self: ${props.alignSelf};`}
     ${props => `flex-basis: ${props.flexBasis};`}
     ${props => `flex-grow: ${props.flexGrow};`}
