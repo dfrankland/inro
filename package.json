@@ -113,6 +113,7 @@
           "devDependencies": [
             "rollup.config.js",
             "**/.storybook/**/*",
+            "**/__storybook__/**/*",
             "**/__tests__/**/*"
           ]
         }
