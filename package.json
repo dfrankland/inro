@@ -24,8 +24,9 @@
   "contributors": [],
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
-    "lint": "eslint src",
-    "prepublish": "npm run lint && npm run build",
+    "lint": "eslint ./src",
+    "test": "jest",
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "start": "npm run storybook"
   },
@@ -41,20 +42,26 @@
   "devDependencies": {
     "@storybook/react": "^3.2.3",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
     "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-polished": "^1.1.0",
     "babel-plugin-styled-components": "^1.1.4",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-react": "^7.0.1",
-    "react": "^15.0.0",
+    "jest": "^20.0.4",
+    "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
     "rollup": "^0.41.6",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^8.0.2",
@@ -69,11 +76,33 @@
     "react": "^15.0.0",
     "styled-components": "^2.0.0"
   },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": 6,
+            "browsers": [
+              "last 2 versions",
+              "> 5%"
+            ]
+          }
+        }
+      ],
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "istanbul"
+    ]
+  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "airbnb",
     "env": {
-      "browser": true
+      "browser": true,
+      "jest/globals": true
     },
     "rules": {
       "react/jsx-filename-extension": "off",
@@ -87,6 +116,26 @@
           ]
         }
       ]
+    },
+    "plugins": [
+      "jest"
+    ]
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "./src/**/*"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
     }
   }
 }
