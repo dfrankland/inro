@@ -1,5 +1,6 @@
 import React from 'react';
 import { injectGlobal } from 'styled-components';
+import { readableColor } from 'polished';
 import { storiesOf } from '@storybook/react';
 import styledBreakpoint from '../index';
 
@@ -20,15 +21,18 @@ storiesOf('styledBreakpoint', module)
     return (
       <StyledBreakpointComponent
         style={{
+          transitionProperty: 'background-color, color',
+          transitionDuration: '0.5s',
+          transitionTimingFunction: 'ease-in-out',
           position: 'absolute',
           width: '100%',
           height: '100%',
         }}
-        xs-style="background-color: red;"
-        sm-style="background-color: orange;"
-        md-style="background-color: yellow;"
-        lg-style="background-color: green;"
-        xl-style="background-color: blue;"
+        xs-style={`background-color: red; color: ${readableColor('red')}`}
+        sm-style={`background-color: orange; color: ${readableColor('orange')}`}
+        md-style={`background-color: yellow; color: ${readableColor('yellow')}`}
+        lg-style={`background-color: green; color: ${readableColor('green')}`}
+        xl-style={`background-color: blue; color: ${readableColor('blue')}`}
       >
         <h1>Resize the window to change the background color!</h1>
       </StyledBreakpointComponent>
