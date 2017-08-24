@@ -1,13 +1,30 @@
-# inro
+<p align="center">
+  <img src="./docs/static/inro-logo.png" style="width: 100px;" />
+  <h1 align="center">inro</h1>
+</p>
+<p align="center">Probably the easiest way to create a responsive UI.</p>
 
-Up-to-date, minimal, flexbox pattern made with `styled-components`.
+```bash
+npm install --save inro
+```
 
-> "An _inrō_ is a traditional Japanese case for holding small objects, suspended
-> from the _obi_ (sash) worn around the waist. They are often highly decorated,
-> in a variety of materials and techniques, in particular often using lacquer."
->  &mdash; [Wikipedia][1]
->
-> "Consisting of a stack of tiny, nested boxes, _inrō_ were most commonly used
-> to carry identity seals and medicine." &mdash; [Wikipedia][1]
+## Docs
 
-[1]: https://en.wikipedia.org/wiki/Inr%C5%8D
+**See pretty documentation on the `inro` website! (coming soon)**
+
+*   [Main](./docs/)
+    *   [About](./docs/about/)
+    *   [Components](./docs/components/)
+    *   [Constants](./docs/constants/)
+    *   [HOCs](./docs/hocs/)
+
+## Examples
+
+If you want to see some components or HOCs in action, run [Storybook][storybook]
+using:
+
+```bash
+npm start
+```
+
+[storybook]: https://storybook.js.org/

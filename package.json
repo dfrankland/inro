@@ -1,7 +1,7 @@
 {
   "name": "inro",
   "version": "1.1.1",
-  "description": "Up-to-date, minimal, flexbox pattern made with styled-components.",
+  "description": "Probably the easiest way to create a responsive UI.",
   "keywords": [
     "flex",
     "box",
