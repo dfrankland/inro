@@ -1,0 +1,50 @@
+{
+  "name": "inro-docs",
+  "version": "1.1.1",
+  "description": "inro-docs",
+  "keywords": [
+    "inro",
+    "docs"
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "author": {
+    "name": "Dylan Frankland",
+    "email": "dylan@frankland.io",
+    "url": "https://github.com/dfrankland"
+  },
+  "contributors": [],
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "bugs": {
+    "url": "https://github.com/dfrankland/inro/issues"
+  },
+  "homepage": "https://github.com/dfrankland/inro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfrankland/inro.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.1.7",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "dependencies": {
+    "glob": "^7.1.2",
+    "inro": "^1.1.1",
+    "next": "^3.0.6",
+    "polished": "^1.4.1",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "remark": "^7.0.0",
+    "remark-react": "^4.0.0",
+    "styled-components": "^2.1.2"
+  }
+}

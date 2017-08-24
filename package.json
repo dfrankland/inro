@@ -24,7 +24,7 @@
   "contributors": [],
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src ./docs/pages",
     "pretest": "npm run lint",
     "test": "jest",
     "prepublishOnly": "npm run build",
