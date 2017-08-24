@@ -5,13 +5,13 @@ import styledBreakpoint from '../styledBreakpoint';
 
 export default ({
   columns = defaultColumns,
-  suffix = '-column-offset',
+  styledBreakpointOptions = { suffix: '-column-offset' },
   defaultProps = {},
 } = {}) => (component) => {
   const {
     component: Component,
     propNames,
-  } = styledBreakpoint({ suffix })(component);
+  } = styledBreakpoint(styledBreakpointOptions)(component);
 
   const GridColumnOffset = (props) => {
     const newProps = propNames.reduce(

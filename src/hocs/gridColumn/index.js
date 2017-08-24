@@ -6,14 +6,14 @@ import styledBreakpoint from '../styledBreakpoint';
 
 export default ({
   columns = defaultColumns,
-  suffix = '-columns',
+  styledBreakpointOptions = { suffix: '-columns' },
   defaultProps = {},
   flex = true,
 } = {}) => (component) => {
   const {
     component: Component,
     propNames,
-  } = styledBreakpoint({ suffix })(component);
+  } = styledBreakpoint(styledBreakpointOptions)(component);
 
   const GridColumn = (props) => {
     const newProps = propNames.reduce(

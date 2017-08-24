@@ -9,7 +9,7 @@ import {
 import styledBreakpoint from '../styledBreakpoint';
 
 export default ({
-  suffix = '-container',
+  styledBreakpointOptions = { suffix: '-container' },
   gridContainerMaxWidths = defaultGridContainerMaxWidths,
   gutterHalfWidth = defaultGutterHalfWidth,
   defaultProps,
@@ -18,7 +18,7 @@ export default ({
     component: newComponent,
     propNameMap,
     propNames,
-  } = styledBreakpoint({ suffix })(component);
+  } = styledBreakpoint(styledBreakpointOptions)(component);
 
   const Component = styled(newComponent)`
     box-sizing: border-box;
