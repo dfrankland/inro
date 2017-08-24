@@ -10,7 +10,7 @@ npm install --save inro
 
 ## Docs
 
-**See pretty documentation on the `inro` website! (coming soon)**
+**See pretty documentation on <https://inro-docs-bmffwrkkfz.now.sh/>!**
 
 *   [Main](./docs/)
     *   [About](./docs/about/)
