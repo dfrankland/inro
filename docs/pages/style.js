@@ -74,17 +74,23 @@ injectGlobal`
     font-size: 1rem;
   }
 
+  p, span, code {
+    line-height: 1.75;
+  }
+
   code {
     font-family: monospace;
     background-color: rgba(0, 0, 0, 0.125);
     padding: 0.25rem;
     border-radius: 0.25rem;
+    overflow-wrap: break-word;
   }
 
   pre {
     background-color: rgba(0, 0, 0, 0.125);
     padding: 0.25rem;
     border-radius: 0.25rem;
+    overflow-x: auto;
     code {
       background-color: transparent;
     }
